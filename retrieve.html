@@ -1,0 +1,139 @@
+<html>
+    <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+    <title>retrieve</title>
+    <style>
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: white;
+        }
+
+        li {
+            float: left;
+        }
+
+        li a {
+            display: block;
+            color: red;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        li a:hover {
+            background-color:blue;
+        }
+.bg {
+    
+    background-image: url(" /home/miracle/varsh/crud with mean/meanpic2.jpg");
+    height: 100%; 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+    </style>
+
+
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script></head>
+<body>
+<div class="bg">
+      <ul>
+        <li><a class="active" href="insert.html">Create</a></li>
+        
+        <li><a href="retrieve.html">Retrieve</a></li>
+        <li><a href="update.html">Update</a></li>
+        <li><a href="delete.html">Delete</a></li>
+        <li><a href="deleteselected.html">Delete Selected</a></li>
+    </ul><br><br><br><br>
+
+    <div   ng-app="myApp" ng-controller="ctrl3">
+    <br><br><br><br>
+    <div align="center">
+        <div style="width:300px; border: solid 1px #333333; " align="left">
+            <div style="background-color:#333333; color:#FFFFFF; padding:3px;"><b>Retrieve</b></div>
+
+            <div style="margin:30px">
+
+                <form >
+                        <label>Product Name  &nbsp;&nbsp;&nbsp;</label><input ng-model="name" class="box" /><br /><br />
+                        <input type="button" value="Retrieve" ng-click="myFunc()" />
+                    </form>
+
+
+            </div>
+
+
+
+        </div>
+
+    </div>
+        <div><br><br>
+            <table  width="50%" align="center" height="80">
+    <tr ng-repeat="x in records" bgcolor="FF7F50">
+        <th>Product Name</th>
+        <th>Product ID</th>
+        <th>Product Brand</th>
+        <th>Quantity</th>
+        <th>Price</th></tr>
+
+    <tr ng-repeat="x in names" bgcolor="FAF0E6">
+        <td>{{x.name}}</td>
+        <td>{{x.email}}</td>
+        <td>{{x.mob}}</td>
+        <td>{{x.quantity}}</td>
+        <td>{{x.price}}</td>
+</tr>
+
+</table>
+</div>
+    </div>
+
+    <script>
+                          var app = angular.module('myApp', []);
+                          app.controller('ctrl3', function ($scope, $http) {
+
+                              $scope.myFunc = function() {
+                           $scope.records = [
+    {
+      "Name" : "Name",
+      "Email" : "Email",
+        "Mobile":"Mobile",
+        "quantity": "quantity",
+        "price":"price"
+    }]
+                                  var name=$scope.name;
+                              var req = {
+                                  method: 'POST',
+                                  url: 'http://localhost:8081/retrieve',
+                   headers: { 'Content-Type': 'Application/json' },
+                   data: {
+                          name: name,
+                         }
+                              }
+
+                                  $http(req)
+                          .then(function (response) {
+                          $scope.names = response.data;
+
+
+                         });
+                                  };
+
+
+        });
+        </script>
+
+<br><br><br><br><br><br>
+<br><br><br><br><br><br>
+
+</div>
+            </body>
+                </html>

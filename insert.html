@@ -1,0 +1,117 @@
+<html><head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+    <title>retrieve</title>
+    <style>
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: white;
+        }
+
+        li {
+            float: left;
+        }
+
+        li a {
+            display: block;
+            color: red;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        li a:hover {
+            background-color: blue;
+        }
+.bg {
+    
+    background-image: url(" /home/miracle/varsh/crud with mean/meanpic2.jpg");
+    height: 100%; 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+    </style>
+
+
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script></head>
+<body>
+<div class="bg">
+     <ul>
+        <li><a class="active" href="insert.html">Create</a></li>
+        
+        <li><a href="retrieve.html">Retrieve</a></li>
+        <li><a href="update.html">Update</a></li>
+        <li><a href="delete.html">Delete</a></li>
+        <li><a href="deleteselected.html">Delete Selected</a></li>
+    </ul><br><br><br><br><br><br><br><br>
+
+    <br><br><br><br>
+    <div align="center"  ng-app="myApp" ng-controller="ctrl">
+        <div style="width:300px; border: solid 1px #333333; " align="left">
+            <div style="background-color:#333333; color:#FFFFFF; padding:3px;"><b>Create</b></div>
+
+            <div style="margin:30px">
+
+                <form>
+                    <label>Product Name  &nbsp;&nbsp;&nbsp;</label><input ng-model="name" class="box" /><br /><br />
+                    <label>Product ID  &nbsp;&nbsp;&nbsp;</label><input ng-model="email" class="box" /><br/><br />
+                    <label>Product Brand  &nbsp;</label><input ng-model="mob" class="box" /><br /><br />
+                    <label>Quantity&nbsp;&nbsp;&nbsp;</label><input ng-model="quantity" class="box" /><br/><br />
+                    <label>Price &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label><input ng-model="price" class="box" /><br/><br />
+                    <input type="button" value="OK" ng-click="myFunc()"/>
+                </form>
+
+
+                <p>{{ names }}</p>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script>
+                          var app = angular.module('myApp', []);
+                          app.controller('ctrl', function ($scope, $http) {
+                              $scope.myFunc = function() {
+                                  alert("Do you want to insert ?");
+                          var name=$scope.name;
+                          var email=$scope.email;
+                          var mob=$scope.mob;
+                          var quantity=$scope.quantity;
+                          var price=$scope.price;
+                              var req = {
+                                  method: 'POST',
+                                  url: 'http://localhost:8081/data',
+                   headers: { 'Content-Type': 'Application/json' },
+                   data: {
+                          name: name,
+                          email: email,
+                          mob:mob,
+                          quantity:quantity,
+                          price:price                       }
+                              }
+
+                                  $http(req)
+                          .then(function (response) {
+                          $scope.names = response.data;
+                                      alert($scope.names);
+                         });
+                                  };
+
+                  });
+        </script>
+
+<br><br><br><br><br><br>
+
+</div>
+            </body>
+                </html>
