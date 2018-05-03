@@ -5,8 +5,8 @@
   "main": "app.js",
   "dependencies": {
     "mongoose": "^4.9.8",
-    "pm2-server-monit": "^1.1.0",
-    "npm": "^6.0.0"
+    "npm": "^6.0.0",
+    "pm2-server-monit": "^1.1.0"
   },
   "devDependencies": {},
   "scripts": {
